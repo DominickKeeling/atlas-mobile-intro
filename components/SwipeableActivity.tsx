@@ -16,7 +16,7 @@ export default function SwipeableActivity({ activity }: { activity: any }) {
           deleteActivity(activity.id);
         }}
       >
-        <View>
+        <View style={styles.innerContainer}>
           <Activity activity={activity} />
         </View>
       </Swipeable>
@@ -36,8 +36,14 @@ export const Action = ({ text }: { text: string }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderWidth: 3,
     marginBottom: 16,
     backgroundColor: "white",
+    marginLeft: 4,
+    marginRight: 4
+  },
+  innerContainer: {
+  
   },
   actionView: {
     backgroundColor: "#D00414",

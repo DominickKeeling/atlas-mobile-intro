@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 50,
+    backgroundColor: "#FFF7E6",
   },
   heading: {
     fontSize: 24,
@@ -50,11 +50,13 @@ const styles = StyleSheet.create({
   deleteButton: {
     backgroundColor: "#D00414",
     width: "100%",
-    textAlign: "center",
+    alignItems: "center",
     padding: 16,
   },
   list: {
     flexGrow: 1,
-    marginTop: 25
+    marginTop: 25,
+    width: "100%",
+    margin: 30
   }
 })

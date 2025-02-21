@@ -10,8 +10,10 @@ export default function AddActivityScreen() {
   const {insertActivity} = useActivitiesContext();
   return (
     <View style={styles.container}>
-      <Text>AddActivityScreen</Text>
-      <TextInput placeholder="Enter steps" keyboardType="number-pad" onChangeText={(value) => setSteps(parseInt(value))}/>
+      <Text style={styles.header}>Add Activity</Text>
+      <View style={styles.inputBox}>
+        <TextInput style={styles.input} placeholder="Enter steps" keyboardType="number-pad" onChangeText={(value) => setSteps(parseInt(value))}/>
+      </View>
       <Pressable style={styles.addButton} onPress={() => {
         insertActivity(steps, new Date());
         router.push("/");
@@ -32,13 +34,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#FFF7E6",
   },
   addButton: {
     backgroundColor: "#1ED2AF",
     padding: 16,
     width: "100%",
     textAlign: "center",
-    marginBottom: 16
   },
   button: {
     backgroundColor: "#D00414",
@@ -49,5 +51,24 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textAlign: "center"
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold"
+  },
+  inputBox: {
+    width: "100%",
+    borderWidth: 3,
+    borderColor: "black",
+    backgroundColor: "white",
+    marginBottom: 20,
+    marginTop: 10,
+    marginRight: 1,
+    marginLeft: 1
+
+  },
+  input: {
+    backgroundColor: "white",
+    color: "#4F4F4F"
   }
 });
