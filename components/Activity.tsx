@@ -3,7 +3,7 @@ import { StyleSheet, Text } from "react-native";
 
 export default function Activity({ activity }: { activity: ActivityType }) {
   return (
-    <Text style={StyleSheet.activity}>
+    <Text style={styles.activity}>
       {activity.steps} steps on {new Date(activity.date).toLocaleDateString()}
     </Text>
   );

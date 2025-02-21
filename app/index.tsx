@@ -1,39 +1,28 @@
-import { useActivities } from "@/hooks/useActivities";
 import { useActivitiesContext } from "@/components/ActivitiesProvider";
 import { Link } from "expo-router";
-import { Alert, StyleSheet, Text, View } from "react-native";
-import Activity from "@/components/Activity";
-import { Activity as ActivityType } from "@/hooks/useActivities";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import SwipeableActivity from "../components/SwipeableActivity";
-import { useState } from "react";
 
 export default function Index() {
-  const { activities } = useActivitiesContext();
-  const [refreshing, setRefreshing] = useState(false);
+  const { activities, deleteAllActivities  } = useActivitiesContext();
   return (
     <View style={styles.container}>
       <View style={styles.list}>
-        {activities.map((activity) => (
-          <Activity activity={activity} key={activity.id} />
-        ))}
         <FlashList
-          renderItem={({ item }) => <SwipeableActivity activity={item} />}
           data={activities}
+          renderItem={({ item }) => <SwipeableActivity activity={item} />}
           estimatedItemSize={50}
-          refreshing={refreshing}
-          onRefresh={() => {
-            setRefreshing(true);
-            setTimeout(() => {
-            Alert.alert("Refreshed");
-            setRefreshing(false);
-            }, 1000);
-          }}
         />
       </View>
       <Link style={styles.button} href={"/add-activity-screen"} replace>
         <Text style={styles.buttonText}>Add Activity</Text>
       </Link>
+      <Pressable style={styles.deleteButton}
+      onPress={() => { deleteAllActivities();
+      }}>
+        <Text style={styles.buttonText}>Delete All Activities</Text>
+      </Pressable>
     </View>
   );
 }
@@ -43,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 50,
   },
   heading: {
     fontSize: 24,
@@ -54,9 +44,17 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   buttonText: {
-    color: "white"
+    color: "white",
+    alignItems: "center"
+  },
+  deleteButton: {
+    backgroundColor: "#D00414",
+    width: "100%",
+    textAlign: "center",
+    padding: 16,
   },
   list: {
-    padding: 32,
+    flexGrow: 1,
+    marginTop: 25
   }
 })
